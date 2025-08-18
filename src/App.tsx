@@ -1,15 +1,9 @@
-import { useState } from 'react';
-import TodoList from './todos/TodoList';
-import TodoWrite from './todos/TodoWrite';
+import StartPage from './pages/StartPage';
 
 function App() {
-  const [todo, setTodo] = useState();
-
   return (
     <div>
-      <h1>Todo List</h1>
-      <TodoList />
-      <TodoWrite />
+      <StartPage />
     </div>
   );
 }

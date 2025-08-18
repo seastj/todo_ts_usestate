@@ -8,6 +8,8 @@
 
 ### 1. Add
 
+- /src/pages/StartPage.tsx
+
 - /src/todos/TodoWrite.tsx
 - /src/todos/TodoList.tsx
 - /src/todos/TodoItem.tsx
