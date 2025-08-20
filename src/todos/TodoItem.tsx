@@ -15,20 +15,31 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps): JSX.Elem
   const handleEdit = () => {
     setIsEdit(true);
   };
+  const handleEditSave = () => {
+    if (editTitle.trim()) {
+      onEdit(todo.id, editTitle);
+    }
+    setIsEdit(false);
+  };
+  const handleEditCancle = () => {
+    setEditTitle(todo.title);
+    setIsEdit(false);
+  };
+
   return (
     <li>
       {isEdit ? (
         <>
           <input type="text" value={editTitle} onChange={e => setEditTitle(e.target.value)} />
-          <button>저장</button>
-          <button>취소</button>
+          <button onClick={handleEditSave}>저장</button>
+          <button onClick={handleEditCancle}>취소</button>
         </>
       ) : (
         <>
           <input type="checkbox" />
           <span>{todo.title}</span>
           <button onClick={handleEdit}>수정</button>
-          <button>삭제</button>
+          <button onClick={e => onDelete()}>삭제</button>
         </>
       )}
     </li>
