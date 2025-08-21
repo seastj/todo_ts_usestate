@@ -35,8 +35,8 @@ function StartPage(): JSX.Element {
   return (
     <div>
       <h1>Todo List</h1>
-      <TodoList todos={todos} onToggle={onToggle} onDelete={onDelete} onEdit={onEdit} />
       <TodoWrite />
+      <TodoList todos={todos} onToggle={onToggle} onDelete={onDelete} onEdit={onEdit} />
     </div>
   );
 }

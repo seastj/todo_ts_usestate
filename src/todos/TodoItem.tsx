@@ -26,8 +26,20 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps): JSX.Elem
     setIsEdit(false);
   };
 
+  const liStyle: React.CSSProperties = {
+    display: 'flex',
+    gap: '10px',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+  const titleStyle: React.CSSProperties = {
+    color: todo.completed ? 'gray' : 'black',
+    fontWeight: todo.completed ? 'nomral' : 'bold',
+    textDecoration: todo.completed ? 'line-through' : 'none',
+  };
+
   return (
-    <li>
+    <li style={liStyle}>
       {isEdit ? (
         <>
           <input type="text" value={editTitle} onChange={e => setEditTitle(e.target.value)} />
@@ -36,10 +48,10 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps): JSX.Elem
         </>
       ) : (
         <>
-          <input type="checkbox" />
-          <span>{todo.title}</span>
+          <input type="checkbox" onChange={() => onToggle(todo.id)} checked={todo.completed} />
+          <span style={titleStyle}>{todo.title}</span>
           <button onClick={handleEdit}>수정</button>
-          <button onClick={e => onDelete()}>삭제</button>
+          <button onClick={() => onDelete(todo.id)}>삭제</button>
         </>
       )}
     </li>
