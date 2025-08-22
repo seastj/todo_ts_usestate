@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { KeyboardEvent, useState } from 'react';
 import { ITodoType } from '../types/todoTypes';
 
 type TodoItemProps = {
@@ -25,6 +25,14 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps): JSX.Elem
     setEditTitle(todo.title);
     setIsEdit(false);
   };
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === `Enter`) {
+      handleEditSave();
+    }
+    if (e.key === `Escape`) {
+      handleEditCancle();
+    }
+  };
 
   const liStyle: React.CSSProperties = {
     display: 'flex',
@@ -42,7 +50,12 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps): JSX.Elem
     <li style={liStyle}>
       {isEdit ? (
         <>
-          <input type="text" value={editTitle} onChange={e => setEditTitle(e.target.value)} />
+          <input
+            type="text"
+            value={editTitle}
+            onKeyDown={handleKeyDown}
+            onChange={e => setEditTitle(e.target.value)}
+          />
           <button onClick={handleEditSave}>저장</button>
           <button onClick={handleEditCancle}>취소</button>
         </>
