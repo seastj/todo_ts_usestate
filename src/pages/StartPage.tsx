@@ -14,6 +14,10 @@ const initialTodos: ITodoType[] = [
 function StartPage(): JSX.Element {
   const [todos, setTodos] = useState<ITodoType[]>(initialTodos);
 
+  const handleTodoUpdate = (newTodo: ITodoType) => {
+    setTodos(prev => [newTodo, ...prev]);
+  };
+
   const onToggle = (id: string) => {
     const arr = todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo,
@@ -35,7 +39,7 @@ function StartPage(): JSX.Element {
   return (
     <div>
       <h1>Todo List</h1>
-      <TodoWrite />
+      <TodoWrite handleTodoUpdate={handleTodoUpdate} />
       <TodoList todos={todos} onToggle={onToggle} onDelete={onDelete} onEdit={onEdit} />
     </div>
   );
