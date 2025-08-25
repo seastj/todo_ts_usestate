@@ -72,7 +72,7 @@ function TodoItem({
             />
             <span
               className={`flex-1 text-gray-900 ${
-                todo.completed ? 'line-through text-gray-400' : 'font-semibold'
+                todo.completed ? 'line-through text-gray-400 ' : 'font-semibold'
               }`}
             >
               {todo.title}
